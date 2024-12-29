@@ -1,5 +1,6 @@
 package com.prabirkundu.quotescomposeapp.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -24,13 +25,18 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.prabirkundu.quotescomposeapp.DataManager
 import com.prabirkundu.quotescomposeapp.R
 import com.prabirkundu.quotescomposeapp.model.Quotes
 
 //@Preview
 @Composable
 fun QuotesDetails(quote: Quotes){
+    BackHandler {
+        DataManager.switchPages(null)
+    }
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
@@ -71,8 +77,10 @@ fun QuotesDetails(quote: Quotes){
                 )
                 Text(
                     text = quote.author,
-                    fontFamily = FontFamily(Font(R.font.montserrat_regular)),
-                    style = MaterialTheme.typography.bodyMedium
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        color = Color.Black,         // Set text color to black
+                        fontWeight = FontWeight.W500 // Set text weight to bold
+                    ),
                 )
             }
         }

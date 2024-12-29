@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.prabirkundu.quotescomposeapp.screens.QuoteList
 import com.prabirkundu.quotescomposeapp.screens.QuotesDetails
 import com.prabirkundu.quotescomposeapp.screens.QuotesListItem
 import com.prabirkundu.quotescomposeapp.screens.QuotesListScreen
@@ -36,8 +37,17 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun App(){
     if (DataManager.isDataLoaded.value){
-        QuotesListScreen(data = DataManager.data) {
-            
+        if (DataManager.currentPage.value == Pages.LISTING){
+            QuotesListScreen(data = DataManager.data) {
+                DataManager.switchPages(it)
+            }
+        } else {
+            DataManager.currentQuotes?.let { QuotesDetails(quote = it) }
         }
     }
+}
+
+enum class Pages{
+    LISTING,
+    DETAILS
 }

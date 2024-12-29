@@ -18,7 +18,7 @@ import com.prabirkundu.quotescomposeapp.R
 import com.prabirkundu.quotescomposeapp.model.Quotes
 
 @Composable
-fun QuotesListScreen(data: Array<Quotes>, onClick: ()->Unit){
+fun QuotesListScreen(data: Array<Quotes>, onClick: (quote:Quotes)->Unit){
     Column {
 
         Text(text = "Quotes App",
@@ -33,8 +33,6 @@ fun QuotesListScreen(data: Array<Quotes>, onClick: ()->Unit){
             ),
                 fontFamily = FontFamily(Font(R.font.montserrat_regular))
         )
-        QuoteList(data = data) {
-            onClick()
-        }
+        QuoteList(data = data,onClick)
     }
 }

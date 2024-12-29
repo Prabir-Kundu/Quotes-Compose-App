@@ -24,18 +24,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.prabirkundu.quotescomposeapp.R
 import com.prabirkundu.quotescomposeapp.model.Quotes
 
 @Preview
 @Composable
-fun QuotesListItem(quote: Quotes, onClick: () -> Unit) {
+fun QuotesListItem(quote: Quotes, onClick: (quote: Quotes) -> Unit) {
     Card(
         elevation = CardDefaults.elevatedCardElevation(4.dp),
         modifier = Modifier
-            .clickable { onClick() }
+            .clickable { onClick(quote) }
             .fillMaxWidth()
             .padding(8.dp),
         shape = RoundedCornerShape(7.dp)
@@ -72,6 +75,7 @@ fun QuotesListItem(quote: Quotes, onClick: () -> Unit) {
                     text = quote.author,
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Medium,
+                    fontFamily = FontFamily(Font(R.font.montserrat_regular)),
                     modifier = Modifier.padding(top = 4.dp)
                 )
             }
